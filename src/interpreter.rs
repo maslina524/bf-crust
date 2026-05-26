@@ -13,11 +13,14 @@ pub unsafe fn run(ptr: *const u8, len: usize) -> () {
         match byte {
             43 => { // plus
                 mem[mem_i] += 1;
-            }
+            },
+            45 => { // minus
+                mem[mem_i] -= 1;
+            },
             _ => {
                 printf("unknown symb\n\0".as_ptr() as *const i8);
             }
         }
-        // printf("%c = %d\n\0".as_ptr() as *const i8, byte as c_int, byte as c_int);
+        printf("%c = %d\n\0".as_ptr() as *const i8, byte as c_int, byte as c_int);
     }
 }
