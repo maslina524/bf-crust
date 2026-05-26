@@ -17,6 +17,9 @@ pub unsafe fn run(ptr: *const u8, len: usize) -> () {
             45 => { // minus
                 mem[mem_i] = if mem[mem_i] == 0 { 255 } else { mem[mem_i] - 1 };
             },
+            46 => { // dot
+                printf("%c\0".as_ptr() as *const i8, mem[mem_i] as c_uint);
+            },
             _ => {
                 printf("unknown symb: %c = %d\n\0".as_ptr() as *const i8, byte as c_int, byte as c_int);
             }
