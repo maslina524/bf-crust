@@ -1,5 +1,5 @@
 @echo off
 cls
-rustc --emit=obj -C panic="abort" src/main.rs
+rustc --emit=obj -C panic="abort" -C debug-assertions=no src/main.rs
 gcc -nostdlib -e _start main.o -o main.exe -lmsvcrt
 .\main.exe
