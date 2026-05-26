@@ -2,6 +2,7 @@ use core::ffi::{c_char, c_int, c_uint};
 
 unsafe extern "C" {
     unsafe fn printf(fmt: *const c_char, ...) -> c_int;
+    unsafe fn getchar() -> c_int;
 }
 
 pub unsafe fn run(ptr: *const u8, len: usize) -> () {
@@ -13,6 +14,9 @@ pub unsafe fn run(ptr: *const u8, len: usize) -> () {
         match byte {
             43 => { // plus
                 mem[mem_i] = if mem[mem_i] == 255 { 0 } else { mem[mem_i] + 1 };
+            },
+            44 => { // comma
+                mem[mem_i] = getchar() as u8;
             },
             45 => { // minus
                 mem[mem_i] = if mem[mem_i] == 0 { 255 } else { mem[mem_i] - 1 };
